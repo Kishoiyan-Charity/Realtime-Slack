@@ -1,15 +1,92 @@
-import {Card, CardDescription, CardHeader} from "@/components/ui/card";
+import { FcGoogle } from "react-icons/fc"
+import { FaGithub } from "react-icons/fa"
+import {SignInFlow} from "@/features/auth/types";
 
-export const SignInCard = () => {
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+
+interface SignInCardProps {
+    setState: (state: SignInFlow) => void;
+}
+
+
+export const SignInCard = ({ setState }: SignInCardProps) => {
     return(
         <Card className='w-full h-full p-8'>
-            <CardHeader className='px-0 pt-8'>
-                Login to continue
+            <CardHeader className='px-0 pt-0'>
+                <CardTitle>
+                    Login to continue
+
+                </CardTitle>
+                <CardDescription>
+                    Use your email or another service to continue
+                </CardDescription>
             </CardHeader>
 
-            <CardDescription>
-            </CardDescription>
-            Sign In Card
+            <CardContent className='space-y-5 px-0 pb-0'>
+                <form className='space-y-2.5'>
+                    <Input
+                        disabled={false}
+                        value=''
+                        onChange={() => {}}
+                        placeholder='Email Address'
+                        type='email'
+                        required
+                    />
+                    <Input
+                        disabled={false}
+                        value=''
+                        onChange={() => {}}
+                        placeholder='Password'
+                        type='password'
+                        required
+                    />
+
+                    <Button type="submit" className='w-full size-lg disabled={false}'>
+                        Continue
+                    </Button>
+
+                </form>
+
+                <Separator />
+                <div className='flex flex-col gap-y-2.5'>
+                    <Button
+                        disabled={false}
+                        onClick={() => {}}
+                        variant='outline'
+                        size='lg'
+                        className='w-full relative'
+                    >
+                        <FcGoogle className='size-5 absolute top-2.5 left-2.5' />
+                        Continue with Google
+                    </Button>
+
+                    <Button
+                        disabled={false}
+                        onClick={() => {}}
+                        variant='outline'
+                        size='lg'
+                        className='w-full relative'
+                    >
+                        <FaGithub className='size-5 absolute top-2.5 left-2.5' />
+                        Continue with GitHub
+                    </Button>
+                </div>
+
+                <p className='text-ts text-muted-foreground text-sm'>
+                    Don&apos;t have an account? <span onClick={() => setState("signUp")} className='text-sky-700 hoover:underline cursor-pointer'>Sign Up</span>
+                </p>
+
+            </CardContent>
         </Card>
     )
 }
